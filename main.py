@@ -28,7 +28,7 @@ async def verify_webhook(
     hub_challenge: str = "",
 ):
     """
-    Meta calls this endpoint once to verify the webhook.
+    Meta calls this endpoint once to verify the webhook
     """
 
     if hub_mode == "subscribe" and hub_verify_token == VERIFY_TOKEN:
