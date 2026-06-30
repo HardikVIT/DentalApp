@@ -3,14 +3,11 @@ from fastapi.responses import PlainTextResponse
 from dotenv import load_dotenv
 import os
 import json
-import uvicorn
 
-# Load environment variables
 load_dotenv()
 
 app = FastAPI(title="WhatsApp Receptionist")
 
-# Read verify token from .env
 VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")
 
 
@@ -28,7 +25,7 @@ async def verify_webhook(
     hub_challenge: str = "",
 ):
     """
-    Meta calls this endpoint once to verify the webhook
+    Meta calls this endpoint once to verify the webhook.
     """
 
     if hub_mode == "subscribe" and hub_verify_token == VERIFY_TOKEN:
@@ -50,7 +47,3 @@ async def receive_webhook(request: Request):
     print("======================================\n")
 
     return {"status": "received"}
-
-
-if __name__ == "__main__":
-    uvicorn.run(app, port=8000)
